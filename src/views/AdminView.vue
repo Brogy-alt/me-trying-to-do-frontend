@@ -40,9 +40,13 @@
 <script>
 import { useStore } from 'vuex';
 import { computed } from '@vue/runtime-core';
+import SpinnerComponent from '@/components/SpinnerComponent.vue';
 
 export default{
-    
+    components: {
+        SpinnerComponent
+    },
+
     setup() {
         const store = useStore()
         store.dispatch("fetchUsers")
@@ -50,8 +54,19 @@ export default{
         return{
             users
         }
+    },
+    created() {
+        setTimeout(() => {
+            this.isSpinning = false;
+        }, 3000);
+    },
+    data() {
+        return {
+            isSpinning: true
+        }
     }
 }
+
 </script>
 <style scoped>
 td {
