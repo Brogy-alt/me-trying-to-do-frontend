@@ -1,6 +1,8 @@
 <template>
-    <div class="container-fluid">
-        <table class="table">
+    <SpinnerComponent v-if="isSpinning" />
+    
+    <div class="container-fluid" v-else>
+        <table class="table" >
             <thead>
                 <tr>
                 <th scope="col">ID</th>
@@ -38,7 +40,9 @@
 <script>
 import { useStore } from 'vuex';
 import { computed } from '@vue/runtime-core';
+
 export default{
+    
     setup() {
         const store = useStore()
         store.dispatch("fetchUsers")
